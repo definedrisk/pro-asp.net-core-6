@@ -344,7 +344,7 @@ Use Synaptic Package Manager.
 
 ### Install MSSQL-Server-2019 (Express)
 
-See documentation at [Microsoft Docs: SQL Server on Linux](https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-overview?view=sql-server-ver15).
+See documentation at [Microsoft Docs: SQL Server on Linux](https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-overview?view=sql-server-linux-ver15).
 
 ```bash
 sudo apt update
@@ -359,4 +359,4 @@ sudo /opt/mssql/bin/mssql-conf setup
 
 If you plan to connect remotely, you might also need to open the SQL Server TCP port (default 1433) on your firewall.
 
-Use [Visual Studio](https://docs.microsoft.com/en-us/visualstudio/data-tools/accessing-data-in-visual-studio?view=vs-2022) or [mssql extension for VS Code](https://docs.microsoft.com/en-us/sql/tools/visual-studio-code/mssql-extensions?view=sql-server-ver15) to create *TestDB* database and ensure connectivity.
+Use [Visual Studio](https://docs.microsoft.com/en-us/visualstudio/data-tools/accessing-data-in-visual-studio?view=vs-2022) or [mssql extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql) to create *TestDB* database and ensure connectivity.
