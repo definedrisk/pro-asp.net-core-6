@@ -1,6 +1,6 @@
 # Example development setup: Linux Ubuntu 20.04.4 client on Windows 10 host using [Oracle VM VirtualBox](https://www.virtualbox.org/)
 
-This exmaple is using free open source tools. It would also be possible to do this with [GitHub codespaces](https://github.com/features/codespaces) and the upcoming [Windows Dev Box](https://techcommunity.microsoft.com/t5/azure-developer-community-blog/introducing-microsoft-dev-box/ba-p/3412063) amongst other tool options.
+This example is using free open source tools. It would also be possible to do this with [GitHub codespaces](https://github.com/features/codespaces) and the upcoming [Windows Dev Box](https://techcommunity.microsoft.com/t5/azure-developer-community-blog/introducing-microsoft-dev-box/ba-p/3412063) amongst other tool options.
 
 ## Virtual hardware settings and first boot
 
