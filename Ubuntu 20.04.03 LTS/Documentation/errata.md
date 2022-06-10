@@ -9,7 +9,7 @@ using VS Code *Follow Link* feature on Ubuntu.
 
 ## Ch4
 
-On Page 67:
+### On Page 67:
 
 > The new browser window can be displayed by setting the `launchBrowser` property shown in Listing 4-5 to *false*,
 > but you will have to perform a manual reload the first time you start or restart ASP.NET Core.
@@ -19,7 +19,7 @@ Suggest clarification:
 > The new browser window can also be displayed when the `launchBrowser` property shown in Listing 4-5 is set to
 > *false*, but you will have to perform a manual load or reload the first time you start or restart ASP.NET Core.
 
-On Page 68:
+### On Page 68:
 
 > If you are using Visual Studio, add a file named MyClass.cs to the MyProject folder with the content shown in
 > Listing 4-10.
@@ -29,7 +29,7 @@ Should be:
 > If you are using Visual Studio Code, add a file named MyClass.cs to the MyProject folder with the content shown in
 > Listing 4-10.
 
-On Page 71:
+### On Page 71:
 
 > The dotnet tool install command installs version 3.1.1 of the dotnet-ef package, which is the version I use in this
 > book.
@@ -41,7 +41,7 @@ Should be:
 
 ## Ch5
 
-On Page 83:
+### On Page 83:
 
 > A question mark (the ? character) is appended to a type to denote a nullable type. So, if a variable’s type is
 > string?, for example, then it can be assigned any value string value or null. When attempting to access this
@@ -61,7 +61,7 @@ Should be:
 
 ## Ch6
 
-On Page 128:
+### On Page 128:
 
 > * Tip The Fact attribute and the Asset class are defined in the Xunit namespace, for which there must be
 > a using statement in every test class.
@@ -71,13 +71,30 @@ Suggest clarification:
 > * Tip The Fact attribute and the Asset class are defined in the Xunit namespace, for which there must be
 > a using statement in every test class. This is may be written with a `global using` statement in a single `Usings.cs` file (see Chapter 5 Understanding Global using Statements for details).
 
-On Page 134 suggest additional (maybe Ubuntu only):
+### On Page 134:
+
+Suggest additional:
+
+> For the `using Microsoft.AspNetCore.Mvc` statement to be valid it will be necessary to reference the [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing) package and add a reference to the ASP.Net Core framework in the `SimpleApp.Tests.csproj` file:
+>
+> ```xml
+>   <ItemGroup>
+>     <FrameworkReference Include="Microsoft.AspNetCore.App" />
+>     <PackageReference Include="Microsoft.AspNetCore.MVC.Testing" Version="6.0.5" />    
+>   </ItemGroup>
+> ```
+
+Further information can be found at:
 
 * https://docs.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-6.0#test-app-prerequisites
 * https://stackoverflow.com/questions/59726695/why-i-couldnt-use-microsoft-aspnetcore-mvc-in-my-unit-testing-project
 
+## Ch7
 
-> For the `using Microsoft.AspNetCore.Mvc` statement to be valid, it will be necessary to reference the [Microsoft.AspNetCore.Mvc.Testing](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing) package and add a reference to the ASP.Net Core framework in the `SimpleApp.Tests.csproj` file:
+On Page 142:
+
+As per [Ch6](#on-page-134) add references for AspNetCore to `SportsSln/SportsStore.Tests/SportsStore.Tests.csproj` when creating the Unit Test Project:
+
 > ```xml
 >   <ItemGroup>
 >     <FrameworkReference Include="Microsoft.AspNetCore.App" />

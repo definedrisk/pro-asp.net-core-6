@@ -1,6 +1,8 @@
-# Example development setup: Linux Ubuntu 20.04.4 client on Windows 10 host using [Oracle VM VirtualBox](https://www.virtualbox.org/)
+# Development Setup
 
-This example is using free open source tools. It would also be possible to do this with [GitHub codespaces](https://github.com/features/codespaces) and the upcoming [Windows Dev Box](https://techcommunity.microsoft.com/t5/azure-developer-community-blog/introducing-microsoft-dev-box/ba-p/3412063) amongst other tool options.
+The example development setup uses a virtual instance of Linux Ubuntu 20.04.4 (client) on Windows 10 (host) using [Oracle VM VirtualBox](https://www.virtualbox.org/)
+
+This example is using free open source tools. It should also be possible to do this with [GitHub codespaces](https://github.com/features/codespaces) and the upcoming [Windows Dev Box](https://techcommunity.microsoft.com/t5/azure-developer-community-blog/introducing-microsoft-dev-box/ba-p/3412063) amongst other tool options.
 
 ## Virtual hardware settings and first boot
 
@@ -15,9 +17,11 @@ Summary of VM settings prior to first boot (mostly defaults):
 * No shared folders
 * Boot from CD image [ubuntu-20.04.4-desktop-amd64.iso](https://releases.ubuntu.com/20.04.4/ubuntu-20.04.4-desktop-amd64.iso)
 
-Most of this document also applies to *-server* (without installing or using any GUI applications). When installing *-server* then select the option to install `openssh-server` and import a key during installation.
+Note: most of this document also applies to *-server* (without installing or using any GUI applications). When installing *-server* then select the option to install `openssh-server` and import a key during installation (this can be done by importing form GitHub).
 
 ### During first boot (install from ISO)
+
+Select the following options:
 
 * UK English
 * Minimal installation
@@ -26,7 +30,9 @@ Most of this document also applies to *-server* (without installing or using any
 * Default
 * Link Ubuntu One and Microsoft accounts and activate live-patch
 
-### After first boot
+### During first run
+
+Do the following:
 
 * Use "Software & Updates" GUI
     * Ubunutu Software
@@ -36,19 +42,20 @@ Most of this document also applies to *-server* (without installing or using any
     * Updates
         * Subscribe to "Security updates only"
 * Adjust resolution, sound and power settings as required
-
-### Add user to `vboxsf` group
-
-This is necessary if using file shares via Oracle Virtual Box. It is usually necessary (easier) to restart the OS after changing group permissions so they update properly throughout.
-
-```code
-id
-groups
-getent group
-sudo usermod -a -G groupname username
-```
+* Add user to `vboxsf` group
+  
+  This is necessary if using file shares via Oracle Virtual Box. It is usually necessary (easier) to restart the OS after changing group permissions so they update properly.
+  
+  ```code
+  id
+  groups
+  getent group
+  sudo usermod -a -G groupname username
+  ```
 
 ## Working environment setup
+
+Once the installation is complete and the system has been rebooted prepare the working environment by installing all the necessary applications and tools.
 
 ### Install *synaptic*
 
@@ -99,18 +106,17 @@ and `/etc/apt/sources.list.d/microsoft-mssql-server-2019.list` containing:
 deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/ubuntu/20.04/mssql-server-2019 focal main
 ```
 
+Microsoft Edge browser is now [installed directly](#install-microsoft-edge-browser-and-gnome-extensions). This was the old method:
 > and `/etc/apt/sources.list.d/microsoft-edge.list` containing:
 > 
 > ```text
 > deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/edge stable main
 > ```
-
-### Install Microsoft Edge browser and Gnome Extensions
-
 > ```bash
 > sudo apt update
 > sudo apt install microsoft-edge-stable
 > ```
+### Install Microsoft Edge browser and Gnome Extensions
 
 Install Edge by downloading package directly from the website: https://www.microsoft.com/en-us/edge . Alternatively follow instructions from https://www.microsoftedgeinsider.com/en-us/download/?platform=linux .
 
@@ -156,7 +162,7 @@ sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.factory-defaults
 sudo chmod a-w /etc/ssh/sshd_config.factory-defaults
 ```
 
-Recommended change ONLY when direct access to the temrinal is available i.e. do NOT do this for remote servers:
+Recommended change ONLY when direct access to the terminal is available **do not** do this when accessing via a remote server:
 
 ```text
 #PasswordAuthentication yes
@@ -290,7 +296,7 @@ sudo dpkg -i ~/packages-microsoft-prod.deb
 rm ~/packages-microsoft-prod.deb
 ```
 
-The install SDKs:
+Then install SDKs:
 
 ```bash
 sudo apt update
@@ -342,7 +348,7 @@ Launch VS Code and sign-in to microsoft account to sync settings. Sign-in to Git
 
 Use Synaptic Package Manager.
 
-### Install MSSQL-Server-2019 (Express)
+### Install MSSQL-Server-2019 Express
 
 See documentation at [Microsoft Docs: SQL Server on Linux](https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-overview?view=sql-server-linux-ver15).
 
@@ -360,3 +366,11 @@ sudo /opt/mssql/bin/mssql-conf setup
 If you plan to connect remotely, you might also need to open the SQL Server TCP port (default 1433) on your firewall.
 
 Use [Visual Studio](https://docs.microsoft.com/en-us/visualstudio/data-tools/accessing-data-in-visual-studio?view=vs-2022) or [mssql extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql) to create *TestDB* database and ensure connectivity.
+
+Install the [SQL Server command-line tools](https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-ubuntu?view=sql-server-ver16#tools) (noting that on this Ubuntu installation `.bashrc` is called from `.profile`):
+
+```bash
+sudo apt install -y mssql-tools unixodbc-dev
+echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
+source ~/.bashrc
+```
