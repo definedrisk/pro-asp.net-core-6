@@ -1,12 +1,5 @@
 # Errata *Pro ASP.NET Core 6 9th Edition*
 
-## General
-
-Relative links from the current directory e.g. `href="/lib/bootstrap/...` when used throughout the `.html` listings
-often begin with `/` which can sometimes be interpreted as a root path. Instead it seems better to begin with current
-directory explicitly e.g. `href="./lib/bootstrap/...`. This is an *edge case* but as an example it is necessary when
-using VS Code *Follow Link* feature on Ubuntu.
-
 ## Ch4
 
 ### On Page 67:
@@ -91,9 +84,9 @@ Further information can be found at:
 
 ## Ch7
 
-On Page 142:
+### On Page 142:
 
-As per [Ch6](#on-page-134) add references for AspNetCore to `SportsSln/SportsStore.Tests/SportsStore.Tests.csproj` when creating the Unit Test Project:
+As per [Ch6](#on-page-134) it is necessary to add references for AspNetCore to `SportsSln/SportsStore.Tests/SportsStore.Tests.csproj` when creating the Unit Test Project:
 
 > ```xml
 >   <ItemGroup>
@@ -101,3 +94,13 @@ As per [Ch6](#on-page-134) add references for AspNetCore to `SportsSln/SportsSto
 >     <PackageReference Include="Microsoft.AspNetCore.MVC.Testing" Version="6.0.5" />    
 >   </ItemGroup>
 > ```
+
+### On Page 167:
+
+Add to `HomeControllerTests.cs` :
+
+```cs
+...
+using SportsStore.Models.ViewModels;
+...
+```
