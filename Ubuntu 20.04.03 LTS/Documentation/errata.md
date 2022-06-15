@@ -1,5 +1,7 @@
 # Errata *Pro ASP.NET Core 6 9th Edition*
 
+Where changes to code listings are given then the associated changes are also implicitly assumed to be required for the accompanying source code.
+
 ## Ch4
 
 ### On Page 67:
@@ -104,3 +106,42 @@ Add to `HomeControllerTests.cs` :
 using SportsStore.Models.ViewModels;
 ...
 ```
+
+## Ch8
+
+### On Page 183:
+
+The *default* parameter value `productPage = 1` is unnecessary for the `Page{productPage:int}` routing schema. It is redundant and does not allow <http://localhost:5000/Page> to be accessed. It can therefore be removed:
+
+With the routing schema ordering given <http://localhost:5000/Products/Page1> would actually be matched by `{category}/Page{productPage:int}`. This will result in the *category* parameter being assigned a string value "Products" (which is clearly not the intent).
+
+The `MapDefaultControllerRoute()` matches <http://localhost:5000/> .
+
+```cs
+app.UseStaticFiles();
+
+app.MapControllerRoute("catpage", "{category}/Page{productPage:int}",
+    new { controller = "Home", action = "Index" });
+
+app.MapControllerRoute("page", "Page{productPage:int}",
+    new { controller = "Home", action = "Index" });
+
+app.MapControllerRoute("category", "{category}",
+    new { controller = "Home", action = "Index", productPage = 1 });
+
+app.MapDefaultControllerRoute();
+```
+
+### On Page 183-185:
+
+Using the above routing the functionality already occurs without the additional steps described here.
+
+### On Page 192:
+
+Typo:
+
+`ViewViewComponentResult` should be `IViewComponentResult`.
+
+### On Page 212
+
+Missing *nullable* reference type `byte[] data = ...` should be `byte[]? data = ...`.
