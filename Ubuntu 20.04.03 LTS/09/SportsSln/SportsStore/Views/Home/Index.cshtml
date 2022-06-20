@@ -1,0 +1,23 @@
+@model ProductsListViewModel
+
+@foreach (var p in Model?.Products ?? Enumerable.Empty<Product>())
+{
+    <partial name="ProductSummary" model="p" />
+}
+
+<div page-model="@Model?.PagingInfo"
+    page-action="Index"
+    page-classes-enabled="true"
+    page-class="btn"
+    page-class-normal="btn-outline-dark"
+    page-class-selected="btn-primary"
+    class="btn-group pull-right m-1">
+</div>
+
+@*
+The following attribute is added during steps on pages 183-185 although the
+intended functionality already occurs so this is not necessary. See errata
+for further details:
+
+    page-url-category="@Model?.CurrentCategory!"
+*@
