@@ -63,8 +63,8 @@ Should be:
 
 Suggest clarification:
 
-> * Tip The Fact attribute and the Asset class are defined in the Xunit namespace, for which there must be
-> a using statement in every test class. This is may be written with a `global using` statement in a single `Usings.cs` file (see Chapter 5 Understanding Global using Statements for details).
+> * Tip The Fact attribute and the Assert class are defined in the Xunit namespace, for which there must be
+> a using statement in every test class. This may be written with a `global using` statement in a single `Usings.cs` file (see Chapter 5 Understanding Global using Statements for details).
 
 ### On Page 134:
 
@@ -145,3 +145,38 @@ Typo:
 ### On Page 212
 
 Missing *nullable* reference type `byte[] data = ...` should be `byte[]? data = ...`.
+
+## Ch9
+
+### On Page 221
+
+For clarity, when *posting* the form to the */Cart* razor page `CartModel.OnPostRemove(long productId, string returnUrl)` I would change the case of the *name* attribute to match that of this receiving function (shown on Page 222) i.e using the same case as `returnUrl`. Although this functionality is case insensitive, it would help differentiate this particular form submisson from being directly associated with the `Product.ProductID` property and `Product` model:
+
+```cs
+ <input type="hidden" name="ProductID" value="@line.Product.ProductID" />
+ ```
+
+ To:
+
+ ```cs
+  <input type="hidden" name="productId" value="@line.Product.ProductID" />
+  ```
+
+Note that on page 201 the `asp-for="ProductID"` is necessary in this case due to the `@model Product`. This [input tag-helper](https://docs.microsoft.com/en-US/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-6.0#the-input-tag-helper) creates the `id` and `name` HTML attributes according to the [expression name](https://docs.microsoft.com/en-US/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-6.0#expression-names) obtained form the ModelState or Model i.e. it is the case-sensitive name of a property from the model.
+
+### Page 224
+
+For information: successfully using 6.1.1 of font awsome from [cdnjs](https://cdnjs.com/libraries/font-awesome).
+
+### Page 235
+
+For clarity I would change the case of the `orderID` property in the anonymous type to `OrderID`, matching that of the receiving property shown in Listing 9-22 on page 240 (although this functionality is case insensitive):
+
+```cs
+return RedirectToPage("/Completed", new { orderId = order.OrderID });
+```
+To:
+
+```cs
+return RedirectToPage("/Completed", new { OrderId = order.OrderID });
+```
