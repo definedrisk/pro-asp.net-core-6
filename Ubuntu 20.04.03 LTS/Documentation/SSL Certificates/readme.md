@@ -53,3 +53,10 @@ For a development machine see also:
 * [Enforce HTTPS in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-6.0&tabs=visual-studio)
 * [Trust the ASP.NET Core HTTPS development certificate on Windows](https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-6.0&tabs=visual-studio#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos)
 * [Trust HTTPS certificate on Linux](https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-6.0&tabs=visual-studio#trust-https-certificate-on-linux)
+
+```bash
+# https://chromium.googlesource.com/chromium/src/+/master/docs/linux/cert_management.md
+sudo apt install libnss3-tools
+certutil -d sql:$HOME/.pki/nssdb -L # List all certificates
+certutil -d sql:$HOME/.pki/nssdb -A -t ",," -n "example-nickname" -i path/to/file.cert
+```

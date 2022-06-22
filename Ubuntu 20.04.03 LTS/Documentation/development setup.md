@@ -374,3 +374,49 @@ sudo apt install -y mssql-tools unixodbc-dev
 echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
 source ~/.bashrc
 ```
+
+## Other
+
+### Add an additional virtual hard disk (mounted file system)
+
+Add a new virtual hard disk (using VBox Manager). To find the new hard drive:
+
+```bash
+dmesg | grep sd
+``` 
+
+Look for the `sd` that has the correct size an identify the letter associated. Then confirm with:
+
+```bash
+ls /dev/sd*
+```
+
+Which will show all drives with the letter (and number if they have partitions):
+
+```bash
+/dev/sda /dev/sda1 /dev/sda2 /dev/sdb /dev/sdb1 /dev/sdc
+```
+
+Here the new drive without partitions is therefore `sdc`. Add a partition with fdisk:
+
+```bash
+fdisk /dev/sdc
+```
+
+Press `p` to view partition information (this should confirm that there are no partitions). Press `n` to create a new partition and `p` to choose primary. Then `1` as default. Confirm the default start and end locations (accept defaults to use whole disk). Finally press `w` to write this to the disk. We should then see `/dev/sdc1`.
+
+To format:
+
+```bash
+mkfs.ext4 /dev/sdc1
+```
+
+To mount:
+
+```bash
+mkdir /mnt/disk-name-part1
+mount /dev/sdc1 /mnt/disk-name-part1
+df -hT
+```
+
+To make persistent (after reboot) add `/dev/sdc1 /mnt/disk-name-part1 ext4 defaults 0 0` to `/etc/fstab`
