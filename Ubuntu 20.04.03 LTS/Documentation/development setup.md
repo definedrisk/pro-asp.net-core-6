@@ -81,6 +81,8 @@ sudo apt install -y python3-pip python3-venv
 sudo apt install dconf-editor
 ```
 
+Use *org > gnome > desktop > input-sources > xkb-options* and set custom value = `['compose:ralt']`.
+
 Use *org > gnome > shell > extensions > dash-to-dock* and set `extend-height = false` and `dock-position = BOTTOM`.
 
 ### Install the Microsoft repositories
@@ -120,7 +122,9 @@ Microsoft Edge browser is now [installed directly](#install-microsoft-edge-brows
 
 Install Edge by downloading package directly from the website: https://www.microsoft.com/en-us/edge . Alternatively follow instructions from https://www.microsoftedgeinsider.com/en-us/download/?platform=linux .
 
-Then setup browser profile sync and log into github. Install *gnome-tweaks* extensions:
+Install *Gnome Tweaks*.
+
+Then setup browser profile sync and log into github. Install *gnome-shell-extensions* extensions:
 
 ```bash
 sudo apt install chrome-gnome-shell gnome-shell-extension-autohidetopbar
@@ -376,6 +380,10 @@ source ~/.bashrc
 ```
 
 ## Other
+
+### US Keyboard layout (maybe used with combined Cyrillic keyboards)
+
+To obtain `₤` and `€` symbols make use of the [Ubuntu *Compose* Key Combinations](https://cheatography.com/davechild/cheat-sheets/ubuntu-compose-key-combinations/)
 
 ### Add an additional virtual hard disk (mounted file system)
 
