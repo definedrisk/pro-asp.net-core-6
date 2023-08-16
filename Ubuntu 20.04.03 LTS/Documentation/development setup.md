@@ -1,12 +1,12 @@
 # Development Setup
 
-The example development setup uses a virtual instance of Linux Ubuntu 20.04.4 (client) on Windows 10 (host) using [Oracle VM VirtualBox](https://www.virtualbox.org/)
+The example development setup uses a virtual instance of Linux Ubuntu 20.04 (client) on Windows 11 (host) using [Oracle VM VirtualBox](https://www.virtualbox.org/)
 
 This example is using free open source tools. It should also be possible to do this with [GitHub codespaces](https://github.com/features/codespaces) and the upcoming [Windows Dev Box](https://techcommunity.microsoft.com/t5/azure-developer-community-blog/introducing-microsoft-dev-box/ba-p/3412063) amongst other tool options.
 
 ## Virtual hardware settings and first boot
 
-Original installation with Oracle VM Virtual Box 6.1.34 (QT 5.6.2) on Windows 10 Pro 19044.1706 Host.
+Original installation with Oracle VM Virtual Box 7.0 (QT 5.15.2) on Windows 11 Pro 22H2 22621.1848 Host.
 
 Summary of VM settings prior to first boot (mostly defaults):
 * 4096Mb memory
